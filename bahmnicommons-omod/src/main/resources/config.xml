@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//OpenMRS//DTD OpenMRS Config 1.0//EN"
+        "http://resources.openmrs.org/doctype/config-1.2.dtd">
+
+<module configVersion="1.2">
+
+    <!-- Module Properties -->
+    <id>@MODULE_ID@</id>
+    <name>@MODULE_NAME@</name>
+    <version>@MODULE_VERSION@</version>
+    <package>@MODULE_PACKAGE@</package>
+    <author>Bahmni</author>
+    <description>
+        Provides common Bahmni services
+    </description>
+    <activator>org.bahmni.module.bahmnicommons.Activator</activator>
+
+    <updateURL>https://example.com/modules/download/bahmnicore/update.rdf</updateURL>
+    <!-- / Module Properties -->
+
+
+
+    <!-- Required Modules -->
+    <require_version>${openMRSRuntimeVersion}</require_version>
+    <require_modules>
+        <require_module>org.openmrs.module.webservices.rest</require_module>
+    </require_modules>
+
+    <!-- / Required Modules -->
+
+    <mappingFiles>
+    </mappingFiles>
+</module>
