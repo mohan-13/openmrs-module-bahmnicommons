@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
     <modules>
-        <module>bahmnicommons-omod</module>
+        <module>bahmni-commons-omod</module>
         <module>bahmni-commons-api</module>
     </modules>
 
@@ -18,18 +18,12 @@
         <openMRSVersion>2.1.1</openMRSVersion>
         <openMRSWebServicesVersion>2.17</openMRSWebServicesVersion>
         <springVersion>3.2.7.RELEASE</springVersion>
-        <atomfeed.version>1.9.4</atomfeed.version>
         <addressHierarchyVersion>2.9</addressHierarchyVersion>
         <reportingModuleVersion>0.10.4</reportingModuleVersion>
         <calculationModuleVersion>1.2</calculationModuleVersion>
         <serializationXstreamModuleVersion>0.2.12</serializationXstreamModuleVersion>
-        <emrapi-omod.version>1.23.0</emrapi-omod.version>
-        <metadatamapping.version>1.3.2</metadatamapping.version>
-        <openmrsAtomfeedVersion>2.5.6</openmrsAtomfeedVersion>
         <lombokVersion>1.16.0</lombokVersion>
         <idgenVersion>4.4.1</idgenVersion>
-        <legacyuiVersion>1.3.3</legacyuiVersion>
-        <episodes.version>1.0-SNAPSHOT</episodes.version>
         <auditLogVersion>1.0-SNAPSHOT</auditLogVersion>
         <!--test dependencies-->
         <junitVersion>4.12</junitVersion>
@@ -45,6 +39,20 @@
 
     <dependencyManagement>
         <dependencies>
+            <!--Child modules-->
+            <dependency>
+                <groupId>org.bahmni.module</groupId>
+                <artifactId>bahmni-commons-omod</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bahmni.module</groupId>
+                <artifactId>bahmni-commons-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!--End of child modules-->
+
             <dependency>
                 <groupId>org.openmrs.api</groupId>
                 <artifactId>openmrs-api</artifactId>
@@ -59,13 +67,6 @@
                 </exclusions>
             </dependency>
             <dependency>
-                <groupId>org.openmrs.module</groupId>
-                <artifactId>webservices.rest-omod</artifactId>
-                <version>${openMRSWebServicesVersion}</version>
-                <type>jar</type>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
                 <groupId>org.openmrs.web</groupId>
                 <artifactId>openmrs-web</artifactId>
                 <version>${openMRSVersion}</version>
@@ -78,16 +79,13 @@
                 </exclusions>
                 <scope>provided</scope>
             </dependency>
+
+            <!--webservices.rest main module-->
             <dependency>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
-                <version>3.0.1</version>
-                <scope>provided</scope>
-            </dependency>
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.15</version>
+                <groupId>org.openmrs.module</groupId>
+                <artifactId>webservices.rest-omod</artifactId>
+                <version>${openMRSWebServicesVersion}</version>
+                <type>jar</type>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -97,71 +95,22 @@
                 <type>jar</type>
                 <scope>provided</scope>
             </dependency>
-
             <dependency>
-                <groupId>org.openmrs.api</groupId>
-                <artifactId>openmrs-api</artifactId>
-                <version>${openMRSVersion}</version>
-                <type>test-jar</type>
-                <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.servlet</groupId>
-                        <artifactId>servlet-api</artifactId>
-                    </exclusion>
-                </exclusions>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+                <version>1.2.15</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
-                <groupId>org.openmrs.test</groupId>
-                <artifactId>openmrs-test</artifactId>
-                <version>${openMRSVersion}</version>
-                <type>pom</type>
-                <scope>test</scope>
+                <groupId>javax.servlet</groupId>
+                <artifactId>javax.servlet-api</artifactId>
+                <version>3.0.1</version>
+                <scope>provided</scope>
             </dependency>
-            <dependency>
-                <groupId>org.openmrs.web</groupId>
-                <artifactId>openmrs-web</artifactId>
-                <version>${openMRSVersion}</version>
-                <type>test-jar</type>
-                <scope>test</scope>
-                <exclusions>
-                    <exclusion>
-                        <groupId>javax.servlet</groupId>
-                        <artifactId>servlet-api</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>${junitVersion}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.hamcrest</groupId>
-                        <artifactId>hamcrest-core</artifactId>
-                    </exclusion>
-                </exclusions>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>${mockitoVersion}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.powermock</groupId>
-                <artifactId>powermock-module-junit4</artifactId>
-                <version>${powerMockVersion}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.powermock</groupId>
-                <artifactId>powermock-api-mockito</artifactId>
-                <version>${powerMockVersion}</version>
-                <scope>test</scope>
-            </dependency>
+            <!--test libraries-->
         </dependencies>
+
+
     </dependencyManagement>
 
     <build>
