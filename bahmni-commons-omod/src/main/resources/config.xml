@@ -15,7 +15,7 @@
     </description>
     <activator>org.bahmni.module.bahmnicommons.Activator</activator>
 
-    <updateURL>https://example.com/modules/download/bahmnicore/update.rdf</updateURL>
+    <updateURL>https://example.com/modules/download/bahmnicommons/update.rdf</updateURL>
     <!-- / Module Properties -->
 
 
