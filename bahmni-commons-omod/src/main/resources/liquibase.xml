@@ -5,18 +5,6 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
-    <changeSet id="bahmni-commons-201910091020" author="Dubey">
-        <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">select count(*) from global_property where property='bahmni.config.baseUrlForUIConfigs'</sqlCheck>
-        </preConditions>
-        <comment>Property to override the bahmni config base url used by bahmni-apps</comment>
-        <insert tableName="global_property">
-            <column name="property" value="bahmni.config.baseUrlForUIConfigs"/>
-            <column name="uuid" valueComputed="UUID()"/>
-            <column name="description" value="property to override the config location from where bahmni specific configs are served"/>
-        </insert>
-    </changeSet>
-
     <changeSet id="bahmni-commons-201910091030" author="Dubey">
         <preConditions onFail="MARK_RAN">
             <sqlCheck expectedResult="0">select count(*) from global_property where property='bahmni.primaryIdentifierType'</sqlCheck>
