@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="bahmni-commons-201910091030" author="Dubey">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">select count(*) from global_property where property='bahmni.primaryIdentifierType'</sqlCheck>
+        </preConditions>
+        <comment>Adding 'bahmni.primaryIdentifierType' global property required for patient search</comment>
+        <insert tableName="global_property">
+            <column name="property" value="bahmni.primaryIdentifierType"/>
+            <column name="uuid" valueComputed="UUID()"/>
+            <column name="description" value="Primary identifier type for looking up patients, generating barcodes, etc."/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
