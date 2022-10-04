@@ -7,7 +7,7 @@
     <groupId>org.bahmni.module</groupId>
     <artifactId>bahmni-commons</artifactId>
     <packaging>pom</packaging>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1</version>
     <modules>
         <module>bahmni-commons-omod</module>
         <module>bahmni-commons-api</module>
