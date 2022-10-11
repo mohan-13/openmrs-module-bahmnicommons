@@ -7,7 +7,7 @@
     <groupId>org.bahmni.module</groupId>
     <artifactId>bahmni-commons</artifactId>
     <packaging>pom</packaging>
-    <version>0.1</version>
+    <version>0.2-SNAPSHOT</version>
     <name>Bahmni Commons Module</name>
     <description>This module has extracted APIs from Bahmni Core, which are being used by bahmni appointments module.</description>
     <url>https://demo.mybahmni.org/bahmni/home/index.html</url>
@@ -30,7 +30,6 @@
         <developerConnection>scm:git:https://github.com/Bahmni/openmrs-module-bahmnicommons.git</developerConnection>
         <url>https://github.com/Bahmni/openmrs-module-bahmnicommons</url>
     </scm>
-
     <modules>
         <module>bahmni-commons-omod</module>
         <module>bahmni-commons-api</module>
