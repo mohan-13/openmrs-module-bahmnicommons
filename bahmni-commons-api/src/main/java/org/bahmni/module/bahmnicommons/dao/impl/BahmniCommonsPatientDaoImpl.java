@@ -3,12 +3,12 @@ package org.bahmni.module.bahmnicommons.dao.impl;
 import org.apache.commons.lang3.StringUtils;
 import org.bahmni.module.bahmnicommons.contract.patient.response.PatientResponse;
 import org.bahmni.module.bahmnicommons.contract.patient.search.PatientSearchBuilder;
-import org.bahmni.module.bahmnicommons.dao.PatientDao;
-import org.bahmni.module.bahmnicommons.model.bahmniPatientProgram.ProgramAttributeType;
+import org.bahmni.module.bahmnicommons.dao.BahmniCommonsPatientDao;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.openmrs.ProgramAttributeType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,12 +17,12 @@ import java.util.Arrays;
 import java.util.List;
 
 @Repository
-public class PatientDaoImpl implements PatientDao {
+public class BahmniCommonsPatientDaoImpl implements BahmniCommonsPatientDao {
 
     private SessionFactory sessionFactory;
 
     @Autowired
-    public PatientDaoImpl(SessionFactory sessionFactory) {
+    public BahmniCommonsPatientDaoImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
@@ -61,7 +61,7 @@ public class PatientDaoImpl implements PatientDao {
 
 
         if (!isValidAddressField(addressFieldName)) {
-            throw new IllegalArgumentException(String.format("Invalid Address Filed %s", addressFieldName));
+            throw new IllegalArgumentException(String.format("Invalid Address Field %s", addressFieldName));
         }
     }
 

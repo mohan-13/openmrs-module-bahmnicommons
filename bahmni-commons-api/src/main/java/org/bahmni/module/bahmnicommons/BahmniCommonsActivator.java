@@ -4,7 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openmrs.module.BaseModuleActivator;
 
-public class Activator extends BaseModuleActivator {
+public class BahmniCommonsActivator extends BaseModuleActivator {
 
 	private Log log = LogFactory.getLog(this.getClass());
 

@@ -24,6 +24,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.apache.commons.lang.StringUtils.isEmpty;
+
 /**
  * Controller for REST web service access to
  * the Search resource.
@@ -59,7 +61,7 @@ public class BahmniAppointmentsPatientSearchController extends BaseRestControlle
                 throw new IllegalRequestException("An unsupported search parameter was provided.");
             }
 
-            String query = searchParameters.getIdentifier() != null ? searchParameters.getIdentifier() : searchParameters.getName();
+            String query = (searchParameters.getIdentifier() != null  && !isEmpty(searchParameters.getIdentifier())) ? searchParameters.getIdentifier() : searchParameters.getName();
             List<Patient> patients = patientService.getPatients(query);
                         
             List<PatientResponse> patientResponseList = patients.stream().map(patient -> {

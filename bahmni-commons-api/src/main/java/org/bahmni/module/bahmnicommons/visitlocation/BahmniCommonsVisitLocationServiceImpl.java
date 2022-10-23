@@ -12,13 +12,13 @@ import java.util.List;
 
 @Component
 @Transactional
-public class BahmniVisitLocationServiceImpl implements BahmniVisitLocationService {
+public class BahmniCommonsVisitLocationServiceImpl implements BahmniCommonsVisitLocationService {
     public static final String LOCATION_TAG_SUPPORTS_VISITS = "Visit Location";
 
     private LocationService locationService;
 
     @Autowired
-    public BahmniVisitLocationServiceImpl(LocationService locationService) {
+    public BahmniCommonsVisitLocationServiceImpl(LocationService locationService) {
         this.locationService = locationService;
     }
 
@@ -39,7 +39,9 @@ public class BahmniVisitLocationServiceImpl implements BahmniVisitLocationServic
 
     private Location getLocationByUuid(String loginLocationUuid) {
         Location location = locationService.getLocationByUuid(loginLocationUuid);
-        if (location == null) throw new IllegalArgumentException("Location Uuid "+loginLocationUuid+" not found");
+        if (location == null) {
+            throw new IllegalArgumentException("Location Uuid "+loginLocationUuid+" not found");
+        }
 
         return location;
     }
@@ -63,7 +65,7 @@ public class BahmniVisitLocationServiceImpl implements BahmniVisitLocationServic
             visitLocation = getVisitLocation(locationUuid);
         } catch (VisitLocationNotFoundException visitLocationNotFound) {
             return visits.get(0);//sensible default assuming there could be visits having location
-                                    // that are not associated with visit locations
+            // that are not associated with visit locations
         }
         for (Visit visit : visits) {
             if (visit.getLocation().equals(visitLocation)) {

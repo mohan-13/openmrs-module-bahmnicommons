@@ -18,6 +18,37 @@
         <property name="mappingJarLocations">
             <ref bean="mappingJarResources"/>
         </property>
+        <property name="packagesToScan">
+            <list>
+                <value>org.openmrs</value>
+            </list>
+        </property>
         <!--  default properties must be set in the hibernate.default.properties -->
+    </bean>
+
+    <bean id="bahmniPatientService" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+        <property name="transactionManager">
+            <ref bean="transactionManager"/>
+        </property>
+        <property name="target">
+            <bean class="org.bahmni.module.bahmnicommons.service.impl.BahmniCommonsPatientServiceImpl">
+                <constructor-arg ref="bahmniCommonsPatientDaoImpl"/>
+            </bean>
+        </property>
+        <property name="preInterceptors">
+            <ref bean="serviceInterceptors"/>
+        </property>
+        <property name="transactionAttributeSource">
+            <ref bean="transactionAttributeSource"/>
+        </property>
+    </bean>
+
+    <bean parent="serviceContext">
+        <property name="moduleService">
+            <list merge="true">
+                <value>org.bahmni.module.bahmnicommons.service.BahmniCommonsPatientService</value>
+                <ref bean="bahmniPatientService"/>
+            </list>
+        </property>
     </bean>
 </beans>

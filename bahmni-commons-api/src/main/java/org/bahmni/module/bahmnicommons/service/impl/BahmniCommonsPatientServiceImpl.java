@@ -2,10 +2,9 @@ package org.bahmni.module.bahmnicommons.service.impl;
 
 import org.bahmni.module.bahmnicommons.contract.patient.PatientSearchParameters;
 import org.bahmni.module.bahmnicommons.contract.patient.response.PatientResponse;
-import org.bahmni.module.bahmnicommons.dao.PatientDao;
-import org.bahmni.module.bahmnicommons.service.BahmniPatientService;
+import org.bahmni.module.bahmnicommons.dao.BahmniCommonsPatientDao;
+import org.bahmni.module.bahmnicommons.service.BahmniCommonsPatientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,18 +12,17 @@ import java.util.List;
 ;
 
 @Service
-@Lazy //to toString rid of cyclic dependencies
-public class BahmniPatientServiceImpl implements BahmniPatientService {
-    private PatientDao patientDao;
+public class BahmniCommonsPatientServiceImpl implements BahmniCommonsPatientService {
+    private BahmniCommonsPatientDao bahmniCommonsPatientDao;
 
     @Autowired
-    public BahmniPatientServiceImpl(PatientDao patientDao) {
-        this.patientDao = patientDao;
+    public BahmniCommonsPatientServiceImpl(BahmniCommonsPatientDao bahmniCommonsPatientDao) {
+        this.bahmniCommonsPatientDao = bahmniCommonsPatientDao;
     }
 
     @Override
     public List<PatientResponse> search(PatientSearchParameters searchParameters) {
-        return patientDao.getPatients(searchParameters.getIdentifier(),
+        return bahmniCommonsPatientDao.getPatients(searchParameters.getIdentifier(),
                 searchParameters.getName(),
                 searchParameters.getCustomAttribute(),
                 searchParameters.getAddressFieldName(),

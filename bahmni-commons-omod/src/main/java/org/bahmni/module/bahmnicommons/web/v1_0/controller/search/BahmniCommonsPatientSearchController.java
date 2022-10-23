@@ -2,7 +2,7 @@ package org.bahmni.module.bahmnicommons.web.v1_0.controller.search;
 
 import org.bahmni.module.bahmnicommons.contract.patient.PatientSearchParameters;
 import org.bahmni.module.bahmnicommons.contract.patient.response.PatientResponse;
-import org.bahmni.module.bahmnicommons.service.BahmniPatientService;
+import org.bahmni.module.bahmnicommons.service.BahmniCommonsPatientService;
 import org.openmrs.module.webservices.rest.web.RequestContext;
 import org.openmrs.module.webservices.rest.web.RestConstants;
 import org.openmrs.module.webservices.rest.web.RestUtil;
@@ -10,6 +10,7 @@ import org.openmrs.module.webservices.rest.web.resource.impl.AlreadyPaged;
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
 import org.openmrs.module.webservices.rest.web.v1_0.controller.BaseRestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,14 +28,15 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(value = "/rest/" + RestConstants.VERSION_1 + "/bahmnicommons/search/patient")
-public class BahmniPatientSearchController extends BaseRestController {
+@Lazy
+public class BahmniCommonsPatientSearchController extends BaseRestController {
 
-    private BahmniPatientService bahmniPatientService;
+    private BahmniCommonsPatientService bahmniCommonsPatientService;
 
 
     @Autowired
-    public BahmniPatientSearchController(BahmniPatientService bahmniPatientService) {
-        this.bahmniPatientService = bahmniPatientService;
+    public BahmniCommonsPatientSearchController(BahmniCommonsPatientService bahmniCommonsPatientService) {
+        this.bahmniCommonsPatientService = bahmniCommonsPatientService;
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -44,7 +46,7 @@ public class BahmniPatientSearchController extends BaseRestController {
         RequestContext requestContext = RestUtil.getRequestContext(request, response);
         PatientSearchParameters searchParameters = new PatientSearchParameters(requestContext);
         try {
-            List<PatientResponse> patients = bahmniPatientService.search(searchParameters);
+            List<PatientResponse> patients = bahmniCommonsPatientService.search(searchParameters);
             AlreadyPaged alreadyPaged = new AlreadyPaged(requestContext, patients, false);
             return new ResponseEntity(alreadyPaged,HttpStatus.OK);
         }catch (IllegalArgumentException e){

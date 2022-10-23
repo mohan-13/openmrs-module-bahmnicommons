@@ -8,7 +8,10 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <context:component-scan base-package="org.bahmni.module"/>
+    <context:component-scan base-package="org.bahmni.module.bahmnicommons"/>
 
+    <bean id="defaultMailSender" class="org.bahmni.module.bahmnicommons.notification.impl.DefaultMailSender">
+        <constructor-arg name="administrationService" ref="adminService"/>
+    </bean>
 
 </beans>

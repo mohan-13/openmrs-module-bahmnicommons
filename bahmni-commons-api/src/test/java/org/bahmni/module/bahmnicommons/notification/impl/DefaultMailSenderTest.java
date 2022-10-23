@@ -9,6 +9,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.internal.verification.VerificationModeFactory;
 import org.openmrs.api.AdministrationService;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PowerMockIgnore;
@@ -41,7 +42,7 @@ public class DefaultMailSenderTest {
     @Rule
     public ExpectedException expectedEx = ExpectedException.none();
 
-    @Test()
+    @Test
     public void shouldSendEmailIfAddressIsValid() throws Exception {
         final String subject = "Hello World";
         final String body = "nothing";
@@ -63,7 +64,7 @@ public class DefaultMailSenderTest {
         mailSender.send(subject, body, new String[]{"test@bahmni.org"}, new String[]{"test-cc@bahmni.org"}, new String[]{"test-bcc@bahmni.org"});
 
         ArgumentCaptor<MimeMessage> argument = ArgumentCaptor.forClass(MimeMessage.class);
-        PowerMockito.verifyStatic();
+        PowerMockito.verifyStatic(Transport.class, VerificationModeFactory.times(1));
         Transport.send(argument.capture());
         MimeMessage msg = argument.getValue();
         assertNotNull(msg);

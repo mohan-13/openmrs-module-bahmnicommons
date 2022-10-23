@@ -10,26 +10,32 @@ import org.openmrs.LocationTag;
 import org.openmrs.Visit;
 import org.openmrs.api.LocationService;
 import org.openmrs.api.context.Context;
+import org.openmrs.api.context.UserContext;
 import org.bahmni.module.bahmnicommons.builder.LocationBuilder;
 import org.bahmni.module.bahmnicommons.builder.VisitBuilder;
 import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
+@PowerMockIgnore("javax.management.*")
 @PrepareForTest(Context.class)
 @RunWith(PowerMockRunner.class)
-public class BahmniVisitLocationServiceImplTest {
-    private BahmniVisitLocationServiceImpl bahmniVisitLocationService;
+public class BahmniCommonsVisitLocationServiceImplTest {
+    private BahmniCommonsVisitLocationServiceImpl bahmniVisitLocationService;
 
     @Mock
     private LocationService locationService;
+
+    @Mock
+    private UserContext userContext;
 
     @Before
     public void setUp() {
@@ -37,7 +43,7 @@ public class BahmniVisitLocationServiceImplTest {
         PowerMockito.mockStatic(Context.class);
         when(Context.getLocationService()).thenReturn(locationService);
 
-        bahmniVisitLocationService = new BahmniVisitLocationServiceImpl(locationService);
+        bahmniVisitLocationService = new BahmniCommonsVisitLocationServiceImpl(locationService);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -62,7 +68,7 @@ public class BahmniVisitLocationServiceImplTest {
         when(locationService.getLocationByUuid("locationUuid1")).thenReturn(location1);
 
         Visit matchingVisit = bahmniVisitLocationService.getMatchingVisitInLocation(Arrays.asList(visit1, visit2), "locationUuid1");
-        assertEquals(visit1, matchingVisit);
+        Assert.assertEquals(visit1, matchingVisit);
     }
 
 
