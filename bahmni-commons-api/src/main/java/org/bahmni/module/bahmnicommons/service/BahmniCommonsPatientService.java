@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface BahmniCommonsPatientService {
 
-    public List<PatientResponse> search(PatientSearchParameters searchParameters);
+    List<PatientResponse> search(PatientSearchParameters searchParameters);
+
+    List<PatientResponse> luceneSearch(PatientSearchParameters searchParameters);
 
 }
