@@ -14,4 +14,30 @@
         <constructor-arg name="administrationService" ref="adminService"/>
     </bean>
 
+    <bean name="bahmniVisitLocationService" class="org.bahmni.module.bahmnicommons.visitlocation.BahmniVisitLocationServiceImpl">
+        <constructor-arg ref="locationService"/>
+    </bean>
+
+    <bean parent="serviceContext">
+        <property name="moduleService">
+            <list merge="true">
+                <value>org.bahmni.module.bahmnicommons.visitlocation.BahmniVisitLocationService</value>
+                <bean
+                        class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+                    <property name="transactionManager">
+                        <ref bean="transactionManager" />
+                    </property>
+                    <property name="target" ref="bahmniVisitLocationService">
+                    </property>
+                    <property name="preInterceptors">
+                        <ref bean="serviceInterceptors" />
+                    </property>
+                    <property name="transactionAttributeSource">
+                        <ref bean="transactionAttributeSource" />
+                    </property>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
 </beans>

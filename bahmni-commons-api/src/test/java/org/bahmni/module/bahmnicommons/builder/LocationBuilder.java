@@ -1,6 +1,6 @@
 package org.bahmni.module.bahmnicommons.builder;
 
-import org.bahmni.module.bahmnicommons.visitlocation.BahmniCommonsVisitLocationServiceImpl;
+import org.bahmni.module.bahmnicommons.visitlocation.BahmniVisitLocationServiceImpl;
 import org.openmrs.Location;
 import org.openmrs.LocationTag;
 
@@ -12,7 +12,7 @@ public class LocationBuilder {
     }
 
     public LocationBuilder withVisitLocationTag() {
-        location.addTag(new LocationTag(BahmniCommonsVisitLocationServiceImpl.LOCATION_TAG_SUPPORTS_VISITS, "Visit Location"));
+        location.addTag(new LocationTag(BahmniVisitLocationServiceImpl.LOCATION_TAG_SUPPORTS_VISITS, "Visit Location"));
         return this;
     }
 

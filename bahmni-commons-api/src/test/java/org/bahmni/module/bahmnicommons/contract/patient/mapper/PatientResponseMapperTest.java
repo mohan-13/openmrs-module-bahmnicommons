@@ -1,7 +1,7 @@
 package org.bahmni.module.bahmnicommons.contract.patient.mapper;
 
 import org.bahmni.module.bahmnicommons.contract.patient.response.PatientResponse;
-import org.bahmni.module.bahmnicommons.visitlocation.BahmniCommonsVisitLocationServiceImpl;
+import org.bahmni.module.bahmnicommons.visitlocation.BahmniVisitLocationServiceImpl;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,7 +37,7 @@ public class PatientResponseMapperTest {
     VisitService visitService;
 
     @Mock
-    BahmniCommonsVisitLocationServiceImpl bahmniCommonsVisitLocationService;
+    BahmniVisitLocationServiceImpl bahmniCommonsVisitLocationService;
 
     @Mock
     ConceptService conceptService;

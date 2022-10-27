@@ -7,7 +7,7 @@ import org.bahmni.module.bahmnicommons.contract.patient.mapper.PatientResponseMa
 import org.bahmni.module.bahmnicommons.contract.patient.response.PatientResponse;
 import org.bahmni.module.bahmnicommons.contract.patient.search.PatientSearchBuilder;
 import org.bahmni.module.bahmnicommons.dao.BahmniCommonsPatientDao;
-import org.bahmni.module.bahmnicommons.visitlocation.BahmniCommonsVisitLocationServiceImpl;
+import org.bahmni.module.bahmnicommons.visitlocation.BahmniVisitLocationServiceImpl;
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.SessionFactory;
@@ -19,7 +19,6 @@ import org.hibernate.search.query.dsl.BooleanJunction;
 import org.hibernate.search.query.dsl.QueryBuilder;
 import org.openmrs.*;
 import org.openmrs.api.context.Context;
-import org.openmrs.api.impl.ProgramWorkflowServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -82,7 +81,7 @@ public class BahmniCommonsPatientDaoImpl implements BahmniCommonsPatientDao {
         }
 
         Map<Object, Object> programAttributes = Context.getProgramWorkflowService().getPatientProgramAttributeByAttributeName(patientIds, programAttributeFieldName);
-        PatientResponseMapper patientResponseMapper = new PatientResponseMapper(Context.getVisitService(),new BahmniCommonsVisitLocationServiceImpl(Context.getLocationService()));
+        PatientResponseMapper patientResponseMapper = new PatientResponseMapper(Context.getVisitService(),new BahmniVisitLocationServiceImpl(Context.getLocationService()));
         Set<Integer> uniquePatientIds = new HashSet<>();
         if(pNames != null && pNames.size() > 0) {
             patientResponses = pNames.stream().filter(pName -> pName.getPerson().getIsPatient())

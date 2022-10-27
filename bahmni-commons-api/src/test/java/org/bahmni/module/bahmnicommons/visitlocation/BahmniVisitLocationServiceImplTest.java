@@ -28,8 +28,8 @@ import static org.mockito.MockitoAnnotations.initMocks;
 @PowerMockIgnore("javax.management.*")
 @PrepareForTest(Context.class)
 @RunWith(PowerMockRunner.class)
-public class BahmniCommonsVisitLocationServiceImplTest {
-    private BahmniCommonsVisitLocationServiceImpl bahmniVisitLocationService;
+public class BahmniVisitLocationServiceImplTest {
+    private BahmniVisitLocationServiceImpl bahmniVisitLocationService;
 
     @Mock
     private LocationService locationService;
@@ -43,7 +43,7 @@ public class BahmniCommonsVisitLocationServiceImplTest {
         PowerMockito.mockStatic(Context.class);
         when(Context.getLocationService()).thenReturn(locationService);
 
-        bahmniVisitLocationService = new BahmniCommonsVisitLocationServiceImpl(locationService);
+        bahmniVisitLocationService = new BahmniVisitLocationServiceImpl(locationService);
     }
 
     @Test(expected = IllegalArgumentException.class)

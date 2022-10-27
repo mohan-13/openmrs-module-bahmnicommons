@@ -2,14 +2,14 @@ package org.bahmni.module.bahmnicommons.contract.patient.search;
 
 import org.openmrs.Location;
 import org.openmrs.api.context.Context;
-import org.bahmni.module.bahmnicommons.visitlocation.BahmniCommonsVisitLocationServiceImpl;
+import org.bahmni.module.bahmnicommons.visitlocation.BahmniVisitLocationServiceImpl;
 
 public class PatientVisitLocationQueryHelper {
 
     private Location visitLocation;
 
     public PatientVisitLocationQueryHelper(String loginLocationUuid) {
-        BahmniCommonsVisitLocationServiceImpl bahmniVisitLocationService = new BahmniCommonsVisitLocationServiceImpl(Context.getLocationService());
+        BahmniVisitLocationServiceImpl bahmniVisitLocationService = new BahmniVisitLocationServiceImpl(Context.getLocationService());
         this.visitLocation = bahmniVisitLocationService.getVisitLocation(loginLocationUuid);
 
     }

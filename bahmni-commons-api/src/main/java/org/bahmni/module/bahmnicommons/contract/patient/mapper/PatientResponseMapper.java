@@ -4,7 +4,7 @@ import java.util.Objects;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.bahmni.module.bahmnicommons.contract.patient.response.PatientResponse;
-import org.bahmni.module.bahmnicommons.visitlocation.BahmniCommonsVisitLocationServiceImpl;
+import org.bahmni.module.bahmnicommons.visitlocation.BahmniVisitLocationServiceImpl;
 import org.openmrs.Patient;
 import org.openmrs.PatientIdentifier;
 import org.openmrs.PersonAddress;
@@ -30,10 +30,10 @@ public class PatientResponseMapper {
     public static final String ADMISSION_STATUS_ATTRIBUTE_TYPE = "Admission Status";
     private PatientResponse patientResponse;
     private VisitService visitService;
-    private BahmniCommonsVisitLocationServiceImpl bahmniCommonsVisitLocationService;
+    private BahmniVisitLocationServiceImpl bahmniCommonsVisitLocationService;
 
 
-    public PatientResponseMapper(VisitService visitService, BahmniCommonsVisitLocationServiceImpl bahmniCommonsVisitLocationService) {
+    public PatientResponseMapper(VisitService visitService, BahmniVisitLocationServiceImpl bahmniCommonsVisitLocationService) {
         this.visitService = visitService;
         this.bahmniCommonsVisitLocationService = bahmniCommonsVisitLocationService;
     }

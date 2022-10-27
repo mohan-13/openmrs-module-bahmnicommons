@@ -10,15 +10,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Component
 @Transactional
-public class BahmniCommonsVisitLocationServiceImpl implements BahmniCommonsVisitLocationService {
+public class BahmniVisitLocationServiceImpl implements BahmniVisitLocationService {
     public static final String LOCATION_TAG_SUPPORTS_VISITS = "Visit Location";
 
     private LocationService locationService;
 
     @Autowired
-    public BahmniCommonsVisitLocationServiceImpl(LocationService locationService) {
+    public BahmniVisitLocationServiceImpl(LocationService locationService) {
         this.locationService = locationService;
     }
 
