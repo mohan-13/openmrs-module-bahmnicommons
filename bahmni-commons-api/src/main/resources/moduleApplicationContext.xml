@@ -10,10 +10,6 @@
 
     <context:component-scan base-package="org.bahmni.module.bahmnicommons"/>
 
-    <bean id="defaultMailSender" class="org.bahmni.module.bahmnicommons.notification.impl.DefaultMailSender">
-        <constructor-arg name="administrationService" ref="adminService"/>
-    </bean>
-
     <bean name="bahmniVisitLocationService" class="org.bahmni.module.bahmnicommons.visitlocation.BahmniVisitLocationServiceImpl">
         <constructor-arg ref="locationService"/>
     </bean>

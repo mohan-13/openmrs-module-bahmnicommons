@@ -27,7 +27,7 @@ import java.util.List;
  * the Search resource.
  */
 @Controller
-@RequestMapping(value = "/rest/" + RestConstants.VERSION_1 + "/bahmnicommons/search/patient")
+@RequestMapping(value = "/rest/" + RestConstants.VERSION_1 + "/bahmni/search/patient")
 @Lazy
 public class BahmniCommonsPatientSearchController extends BaseRestController {
 
