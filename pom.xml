@@ -7,7 +7,7 @@
     <groupId>org.bahmni.module</groupId>
     <artifactId>bahmni-commons</artifactId>
     <packaging>pom</packaging>
-    <version>0.2-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>Bahmni Commons Module</name>
     <description>This module has extracted APIs from Bahmni Core, which are being used by bahmni appointments module.</description>
     <url>https://demo.mybahmni.org/bahmni/home/index.html</url>
@@ -256,8 +256,11 @@
                             </goals>
                             <configuration>
                                 <includes>
-                                    <include>*</include>
+                                    <include>**/*</include>
                                 </includes>
+                                <excludes>
+                                    <exclude>**/*Activator.class</exclude>
+                                </excludes>
                             </configuration>
                         </execution>
                     </executions>
@@ -302,6 +305,9 @@
     <profiles>
         <profile>
             <id>IT</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <build>
                 <plugins>
                     <plugin>

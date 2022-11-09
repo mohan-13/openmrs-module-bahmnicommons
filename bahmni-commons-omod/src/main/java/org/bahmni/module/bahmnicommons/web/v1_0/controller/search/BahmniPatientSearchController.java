@@ -10,6 +10,7 @@ import org.openmrs.module.webservices.rest.web.resource.impl.AlreadyPaged;
 import org.openmrs.module.webservices.rest.web.response.ResponseException;
 import org.openmrs.module.webservices.rest.web.v1_0.controller.BaseRestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,8 @@ import java.util.List;
  * the Search resource.
  */
 @Controller
-@RequestMapping(value = "/rest/" + RestConstants.VERSION_1 + "/bahmnicommons/search/patient")
+@RequestMapping(value = "/rest/" + RestConstants.VERSION_1 + "/bahmni/search/patient")
+@Lazy
 public class BahmniPatientSearchController extends BaseRestController {
 
     private BahmniPatientService bahmniPatientService;
@@ -45,6 +47,21 @@ public class BahmniPatientSearchController extends BaseRestController {
         PatientSearchParameters searchParameters = new PatientSearchParameters(requestContext);
         try {
             List<PatientResponse> patients = bahmniPatientService.search(searchParameters);
+            AlreadyPaged alreadyPaged = new AlreadyPaged(requestContext, patients, false);
+            return new ResponseEntity(alreadyPaged,HttpStatus.OK);
+        }catch (IllegalArgumentException e){
+            return new ResponseEntity(RestUtil.wrapErrorResponse(e, e.getMessage()), HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @RequestMapping(value="lucene", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<AlreadyPaged<PatientResponse>> luceneSearch(HttpServletRequest request,
+                                                                      HttpServletResponse response) throws ResponseException{
+        RequestContext requestContext = RestUtil.getRequestContext(request, response);
+        PatientSearchParameters searchParameters = new PatientSearchParameters(requestContext);
+        try {
+            List<PatientResponse> patients = bahmniPatientService.luceneSearch(searchParameters);
             AlreadyPaged alreadyPaged = new AlreadyPaged(requestContext, patients, false);
             return new ResponseEntity(alreadyPaged,HttpStatus.OK);
         }catch (IllegalArgumentException e){

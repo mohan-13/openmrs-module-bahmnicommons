@@ -5,12 +5,10 @@ import org.openmrs.Location;
 import org.openmrs.Visit;
 import org.openmrs.api.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Component
 @Transactional
 public class BahmniVisitLocationServiceImpl implements BahmniVisitLocationService {
     public static final String LOCATION_TAG_SUPPORTS_VISITS = "Visit Location";

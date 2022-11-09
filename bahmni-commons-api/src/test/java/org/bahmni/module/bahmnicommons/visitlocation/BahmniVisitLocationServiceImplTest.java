@@ -20,7 +20,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import java.util.Arrays;
 
-import static org.junit.Assert.assertEquals;
+import static junit.framework.Assert.assertEquals;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -68,7 +68,7 @@ public class BahmniVisitLocationServiceImplTest {
         when(locationService.getLocationByUuid("locationUuid1")).thenReturn(location1);
 
         Visit matchingVisit = bahmniVisitLocationService.getMatchingVisitInLocation(Arrays.asList(visit1, visit2), "locationUuid1");
-        assertEquals(visit1, matchingVisit);
+        Assert.assertEquals(visit1, matchingVisit);
     }
 
 

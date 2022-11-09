@@ -3,6 +3,7 @@ package org.bahmni.module.bahmnicommons.contract.patient;
 import org.apache.commons.lang.StringUtils;
 import org.openmrs.module.webservices.rest.web.RequestContext;
 
+import java.util.Arrays;
 import java.util.Map;
 
 public class PatientSearchParameters {
@@ -22,14 +23,24 @@ public class PatientSearchParameters {
     private String[] patientSearchResultFields;
     private Boolean filterOnAllIdentifiers;
 
+
+
+    public PatientSearchParameters() {
+        this.length = 10;
+        this.start = 0;
+    }
     public PatientSearchParameters(RequestContext context) {
         String query = context.getParameter("q");
         String identifier = context.getParameter("identifier");
         if (identifier != null) {
             this.setIdentifier(identifier);
-        } else if (query != null) {
+        } else {
+            this.setIdentifier("");
+        }
+        if (query != null) {
             if (query.matches(".*\\d+.*")) {
                 this.setIdentifier(query);
+                this.setName(query);
             } else {
                 this.setName(query);
             }
@@ -45,7 +56,7 @@ public class PatientSearchParameters {
         }
         this.setAddressFieldValue(context.getParameter("addressFieldValue"));
         Map parameterMap = context.getRequest().getParameterMap();
-        this.setAddressSearchResultFields((String[]) parameterMap.get("addressSearchResultsConfig"));
+        this.setAddressSearchResultFields(getAddressConfigIfExists(parameterMap.get("addressSearchResultsConfig")));
         this.setPatientSearchResultFields((String[]) parameterMap.get("patientSearchResultsConfig"));
         this.setPatientAttributes((String[]) parameterMap.get("patientAttributes"));
         this.setProgramAttributeFieldValue(context.getParameter("programAttributeFieldValue"));
@@ -53,6 +64,10 @@ public class PatientSearchParameters {
         this.setFilterPatientsByLocation(Boolean.valueOf(context.getParameter("filterPatientsByLocation")));
         this.setFilterOnAllIdentifiers(Boolean.valueOf(context.getParameter("filterOnAllIdentifiers")));
         this.setLoginLocationUuid(context.getParameter("loginLocationUuid"));
+    }
+
+    private String[] getAddressConfigIfExists(Object addressConfig) {
+        return !Arrays.toString((Object[]) addressConfig).equals("[{}]") ? (String[]) addressConfig : null;
     }
 
     public String getIdentifier() {

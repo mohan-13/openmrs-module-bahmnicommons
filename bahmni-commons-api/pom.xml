@@ -5,7 +5,7 @@
     <parent>
         <artifactId>bahmni-commons</artifactId>
         <groupId>org.bahmni.module</groupId>
-        <version>0.2-SNAPSHOT</version>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -120,6 +120,14 @@
                             <goal>check</goal>
                         </goals>
                         <configuration>
+                            <outputDirectory>${project.build.directory}/jacoco-reports</outputDirectory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <excludes>
+                                <exclude>**/*Activator.class</exclude>
+                                <exclude>**/*BahmniCommonsPatientDaoImpl.class</exclude>
+                            </excludes>
                             <rules>
                                 <rule>
                                     <element>BUNDLE</element>
@@ -127,12 +135,12 @@
                                         <limit>
                                             <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.36</minimum>
+                                            <minimum>0.35</minimum>
                                         </limit>
                                         <limit>
                                             <counter>BRANCH</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.34</minimum>
+                                            <minimum>0.3</minimum>
                                         </limit>
                                     </limits>
                                 </rule>

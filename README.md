@@ -4,7 +4,7 @@ This repository contains the extracted APIs from Bahmni Core, which are being us
 
 ## APIs Extracted
 
-* patient-search (`/openmrs/ws/rest/v1/bahmnicore/search/patient`)
+* patient-search (`/openmrs/ws/rest/v1/bahmni/search/patient`)
 * location-search-handler-bytags (`/openmrs/ws/rest/v1/location?operator=ALL&s=byTags`)
   
 ## Setup
