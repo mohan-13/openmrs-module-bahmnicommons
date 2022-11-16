@@ -95,7 +95,6 @@ public class PatientSearchQueryBuilder {
 		String query_by_name_parts = "";
 		for (int i = 0; i < nameParts.length; i++) {
 			String namePart = nameParts[i];
-			//String paramValue = SqlQueryHelper.escapeSQL(namePart,true);
 			String paramValue = "%".concat(namePart).concat("%");
 			QueryParam queryParam = new QueryParam("paramName" + i, paramValue);
 			parameters.add(queryParam);

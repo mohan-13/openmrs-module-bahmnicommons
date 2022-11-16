@@ -126,7 +126,6 @@
                             </includes>
                             <excludes>
                                 <exclude>**/*Activator.class</exclude>
-                                <exclude>**/*BahmniCommonsPatientDaoImpl.class</exclude>
                             </excludes>
                             <rules>
                                 <rule>
@@ -135,12 +134,12 @@
                                         <limit>
                                             <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.35</minimum>
+                                            <minimum>0.27</minimum>
                                         </limit>
                                         <limit>
                                             <counter>BRANCH</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.3</minimum>
+                                            <minimum>0.21</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
