@@ -13,7 +13,7 @@
     <description>
         Provides common Bahmni services
     </description>
-    <activator>org.bahmni.module.bahmnicommons.BahmniCommonsActivator</activator>
+    <activator>org.bahmni.module.bahmnicommons.api.BahmniCommonsActivator</activator>
 
     <updateURL>https://example.com/modules/download/bahmnicommons/update.rdf</updateURL>
     <!-- / Module Properties -->

@@ -6,7 +6,7 @@
   		    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
   		    http://www.springframework.org/schema/context
   		    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-    <context:component-scan base-package="org.bahmni.module.bahmnicommons"/>
+    <context:component-scan base-package="org.bahmni.module.bahmnicommons.api"/>
 
     <bean id="sessionFactory" class="org.openmrs.api.db.hibernate.HibernateSessionFactoryBean">
         <property name="configLocations">
@@ -26,7 +26,7 @@
         <!--  default properties must be set in the hibernate.default.properties -->
     </bean>
 
-    <bean id="patientDao" class="org.bahmni.module.bahmnicommons.dao.impl.PatientDaoImpl">
+    <bean id="patientDao" class="org.bahmni.module.bahmnicommons.api.dao.impl.PatientDaoImpl">
         <constructor-arg ref="sessionFactory"/>
     </bean>
 
@@ -35,7 +35,7 @@
             <ref bean="transactionManager"/>
         </property>
         <property name="target">
-            <bean class="org.bahmni.module.bahmnicommons.service.impl.BahmniPatientServiceImpl">
+            <bean class="org.bahmni.module.bahmnicommons.api.service.impl.BahmniPatientServiceImpl">
                 <constructor-arg ref="personService"/>
                 <constructor-arg ref="conceptService"/>
                 <constructor-arg ref="patientDao"/>
@@ -52,7 +52,7 @@
     <bean parent="serviceContext">
         <property name="moduleService">
             <list merge="true">
-                <value>org.bahmni.module.bahmnicommons.service.BahmniPatientService</value>
+                <value>org.bahmni.module.bahmnicommons.api.service.BahmniPatientService</value>
                 <ref bean="bahmniPatientService"/>
             </list>
         </property>

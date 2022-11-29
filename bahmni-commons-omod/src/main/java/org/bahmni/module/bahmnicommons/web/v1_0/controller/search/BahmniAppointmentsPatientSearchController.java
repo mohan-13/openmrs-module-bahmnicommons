@@ -1,7 +1,7 @@
 package org.bahmni.module.bahmnicommons.web.v1_0.controller.search;
 
-import org.bahmni.module.bahmnicommons.contract.patient.PatientSearchParameters;
-import org.bahmni.module.bahmnicommons.contract.patient.response.PatientResponse;
+import org.bahmni.module.bahmnicommons.api.contract.patient.PatientSearchParameters;
+import org.bahmni.module.bahmnicommons.api.contract.patient.response.PatientResponse;
 import org.openmrs.Patient;
 import org.openmrs.api.PatientService;
 import org.openmrs.module.webservices.rest.web.RequestContext;

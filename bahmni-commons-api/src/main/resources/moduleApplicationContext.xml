@@ -8,9 +8,9 @@
 		http://www.springframework.org/schema/context
 		http://www.springframework.org/schema/context/spring-context-3.0.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <context:component-scan base-package="org.bahmni.module.bahmnicommons"/>
+    <context:component-scan base-package="org.bahmni.module.bahmnicommons.api"/>
 
-    <bean id="patientDao" class="org.bahmni.module.bahmnicommons.dao.impl.PatientDaoImpl">
+    <bean id="patientDao" class="org.bahmni.module.bahmnicommons.api.dao.impl.PatientDaoImpl">
         <constructor-arg ref="sessionFactory"/>
     </bean>
 
@@ -19,7 +19,7 @@
             <ref bean="transactionManager"/>
         </property>
         <property name="target">
-            <bean class="org.bahmni.module.bahmnicommons.service.impl.BahmniPatientServiceImpl">
+            <bean class="org.bahmni.module.bahmnicommons.api.service.impl.BahmniPatientServiceImpl">
                 <constructor-arg ref="personService"/>
                 <constructor-arg ref="conceptService"/>
                 <constructor-arg ref="patientDao"/>
@@ -36,21 +36,21 @@
     <bean parent="serviceContext">
         <property name="moduleService">
             <list merge="true">
-                <value>org.bahmni.module.bahmnicommons.service.BahmniPatientService</value>
+                <value>org.bahmni.module.bahmnicommons.api.service.BahmniPatientService</value>
                 <ref bean="bahmniPatientService"/>
             </list>
         </property>
     </bean>
 
 
-    <bean name="bahmniVisitLocationService" class="org.bahmni.module.bahmnicommons.visitlocation.BahmniVisitLocationServiceImpl">
+    <bean name="bahmniVisitLocationService" class="org.bahmni.module.bahmnicommons.api.visitlocation.BahmniVisitLocationServiceImpl">
         <constructor-arg ref="locationService"/>
     </bean>
 
     <bean parent="serviceContext">
         <property name="moduleService">
             <list merge="true">
-                <value>org.bahmni.module.bahmnicommons.visitlocation.BahmniVisitLocationService</value>
+                <value>org.bahmni.module.bahmnicommons.api.visitlocation.BahmniVisitLocationService</value>
                 <bean
                         class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
                     <property name="transactionManager">

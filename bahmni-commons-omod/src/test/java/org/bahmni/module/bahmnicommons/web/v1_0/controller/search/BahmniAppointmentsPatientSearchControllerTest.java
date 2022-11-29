@@ -1,7 +1,7 @@
 package org.bahmni.module.bahmnicommons.web.v1_0.controller.search;
 
 import org.bahmni.module.bahmnicommons.BaseIntegrationTest;
-import org.bahmni.module.bahmnicommons.contract.patient.response.PatientResponse;
+import org.bahmni.module.bahmnicommons.api.contract.patient.response.PatientResponse;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
