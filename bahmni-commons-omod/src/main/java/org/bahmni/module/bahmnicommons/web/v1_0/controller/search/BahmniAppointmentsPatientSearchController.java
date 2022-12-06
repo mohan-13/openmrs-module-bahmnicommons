@@ -1,7 +1,7 @@
 package org.bahmni.module.bahmnicommons.web.v1_0.controller.search;
 
-import org.bahmni.module.bahmnicommons.contract.patient.PatientSearchParameters;
-import org.bahmni.module.bahmnicommons.contract.patient.response.PatientResponse;
+import org.bahmni.module.bahmnicommons.api.contract.patient.PatientSearchParameters;
+import org.bahmni.module.bahmnicommons.api.contract.patient.response.PatientResponse;
 import org.openmrs.Patient;
 import org.openmrs.api.PatientService;
 import org.openmrs.module.webservices.rest.web.RequestContext;
@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.apache.commons.lang.StringUtils.isEmpty;
 
 /**
  * Controller for REST web service access to
@@ -59,7 +61,7 @@ public class BahmniAppointmentsPatientSearchController extends BaseRestControlle
                 throw new IllegalRequestException("An unsupported search parameter was provided.");
             }
 
-            String query = searchParameters.getIdentifier() != null ? searchParameters.getIdentifier() : searchParameters.getName();
+            String query = (searchParameters.getIdentifier() != null  && !isEmpty(searchParameters.getIdentifier())) ? searchParameters.getIdentifier() : searchParameters.getName();
             List<Patient> patients = patientService.getPatients(query);
                         
             List<PatientResponse> patientResponseList = patients.stream().map(patient -> {
