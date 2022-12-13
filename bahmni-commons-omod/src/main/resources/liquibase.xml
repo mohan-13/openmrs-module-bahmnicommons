@@ -5,9 +5,9 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
 
-    <changeSet id="bahmni-commons-201910091030" author="Dubey">
+    <changeSet id="bahmni-commons-202212131826" author="Dubey">
         <preConditions onFail="MARK_RAN">
-            <sqlCheck expectedResult="0">select count(*) from global_property where property='bahmni.primaryIdentifierType'</sqlCheck>
+            <sqlCheck expectedResult="0">select count(*) from global_property where property='bahmni.primaryIdentifierType' or property='emr.primaryIdentifierType'</sqlCheck>
         </preConditions>
         <comment>Adding 'bahmni.primaryIdentifierType' global property required for patient search</comment>
         <insert tableName="global_property">
