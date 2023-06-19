@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>bahmni-commons-omod</artifactId>
+    <artifactId>bahmni-commons-ipd-omod</artifactId>
     <packaging>jar</packaging>
     <name>Bahmni commons OMOD</name>
 
@@ -33,7 +33,7 @@
         </dependency>
         <dependency>
             <groupId>org.bahmni.module</groupId>
-            <artifactId>bahmni-commons-api</artifactId>
+            <artifactId>bahmni-commons-ipd-api</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
         <dependency>
