@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>bahmni-commons-api</artifactId>
+    <artifactId>bahmni-commons-ipd-api</artifactId>
     <name>Bahmni commons Api</name>
     <packaging>jar</packaging>
 
