@@ -51,7 +51,6 @@ public class BahmniPatientDaoIT extends BaseIntegrationTest {
                 .withAddressFieldName("city_village")
                 .withAddressSearchResultFields(addressResultFields)
                 .withLoginLocationUuid("c36006e5-9fbb-4f20-866b-0ece245615a1")
-                .withAttributeToFilterOut("filterAttribute")
                 .build();
         List<PatientResponse> patients = fetchPatients(searchParameters);
 
