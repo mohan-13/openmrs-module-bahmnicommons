@@ -309,7 +309,7 @@ public class PatientDaoImplLuceneIT extends BaseIntegrationTest {
     public void shouldSearchByAnyPatientFullName() {
         String[] addressResultFields = {"city_village"};
         List<PatientResponse> patients = patientDao.getPatientsUsingLuceneSearch("Horatio Peeter Sinha", "Horatio Peeter Sinha", null, "city_village", "",
-                100, 0, null, "", null, addressResultFields, null, "c36006e5-9fbb-4f20-866b-0ece245615a1", false, true);
+                100, 0, null, "", null, addressResultFields, null, "c36006e5-9fbb-4f20-866b-0ece245615a1", false, true,"");
         assertNotNull(patients);
         assertEquals(1, patients.size());
         PatientResponse patient = patients.get(0);
